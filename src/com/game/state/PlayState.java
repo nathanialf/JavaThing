@@ -35,7 +35,7 @@ public class PlayState extends State
 		
 		Rectangle2D.Double background = new Rectangle2D.Double();
 		background.setRect(0, 0, Display.WIDTH, Display.HEIGHT); 
-		g.setColor(new Color(239,239,239));
+		g.setColor(new Color(227,242,253));
 		g.fill(background);
 		
 		//Draws world

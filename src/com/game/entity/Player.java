@@ -54,21 +54,6 @@ public class Player extends Entity
 	
 	public void update(double delta)
 	{
-		/*
-		setAngle(getAngle() + (delta * .1));
-		if(getAngle() > 360) setAngle(getAngle() - 360);
-		*/
-		
-		//System.out.println(Display.getKeyboard().getPlayerMovement()[0]);
-		/*
-		for(int a = 0; a < 4; a++)
-		{
-			if(Display.getKeyboard().getPlayerMovement()[a])
-			{
-				move(a);
-			}
-		}*/
-		
 		//gun.update(delta);
 	}
 
@@ -77,7 +62,7 @@ public class Player extends Entity
 	{	
 		//g.rotate(getAngle(), getX() + (getWidth() / 2), getY() + (getHeight() / 2));
 		
-		g.setColor(new Color(85,35,200));
+		g.setColor(new Color(13,71,161));
 		g.fill(body);
 		
 		//g.rotate(-getAngle(), getX() + (getWidth() / 2), getY() + (getHeight() / 2));

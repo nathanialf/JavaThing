@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -102,7 +101,7 @@ public class World
 	
 	public void render(Graphics2D g)
 	{
-		g.setColor(new Color(150,150,150));
+		g.setColor(new Color(144,202,249));
 		g.fill(body);
 		g.drawImage(image, 4, 4, 4, 4, null);
 	}

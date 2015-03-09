@@ -22,16 +22,15 @@ public class PauseState extends State
 	
 	public void render(Graphics2D g)
 	{	
-
 		//is a rectangle with boundaries I use for collisions. Google Rectangle2D 
 		
 		Rectangle2D.Double background = new Rectangle2D.Double();
 		background.setRect(0, 0, Display.WIDTH, Display.HEIGHT); 
-		g.setColor(new Color(239,239,239));
+		g.setColor(new Color(33,150,243));
 		g.fill(background);
 
 		g.setColor(Color.black);
 		g.setFont(font);
-		g.drawString("GAME IS PAUSED", 40, Display.HEIGHT / 2);
+		g.drawString("GAME IS PAUSED", 40, Display.HEIGHT / 4);
 	}
 }
