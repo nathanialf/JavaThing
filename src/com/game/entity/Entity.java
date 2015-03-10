@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.*;
 
+import com.game.main.Display;
+
 public class Entity 
 {
 	private int x;
@@ -34,7 +36,7 @@ public class Entity
 	
 	public void buildBody()
 	{
-		body = new Rectangle2D.Double(getX(), getY(), getWidth(), getHeight());
+		body = new Rectangle2D.Double(Display.getState().getBackground().getX() + getX(), Display.getState().getBackground().getY() + getY(), getWidth(), getHeight());
 	}
 
 	public int getX()				{return this.x;}

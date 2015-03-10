@@ -74,7 +74,7 @@ public class Keyboard implements KeyListener
 		if(e.getKeyCode() == e.VK_ESCAPE)System.exit(0);
 		
 		//Toggles play and pause state
-		if(e.getKeyChar() == control[4])
+		if(e.getKeyChar() == control[4] && !Display.getState().is_open_animating)
 		{
 			if(!player_move[4])
 			{

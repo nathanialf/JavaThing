@@ -36,7 +36,6 @@ public class World
 		if(getFile() == null)
 		{
 			System.out.println("NO FILE SPECIFIED\nFile set to: error.map");
-			
 			setFile(new File("res/maps/error.map"));
 		}
 		
@@ -47,8 +46,8 @@ public class World
 			
 			while(reader.hasNextLine())
 			{
-				String line = reader.nextLine();
-				String values[] = line.split("-");
+				String values[] = reader.nextLine().split("-");
+				
 				switch(values[0])
 				{
 				case "Width":
@@ -58,14 +57,14 @@ public class World
 					setHeight((int)(Display.WIDTH / Integer.parseInt(values[1])));
 					break;
 				case "Image":
-					System.out.println("IMAGE: " + values[1]);
+					//System.out.println("IMAGE: " + values[1]);
 					break;
 				default:
 					break;
 				}
 			}
 		} 
-		catch (FileNotFoundException e) 
+		catch (FileNotFoundException e)
 		{
 			e.printStackTrace();
 		}
@@ -101,14 +100,14 @@ public class World
 	
 	public void render(Graphics2D g)
 	{
-		g.setColor(new Color(144,202,249));
+		g.setColor(new Color(144,164,174));
 		g.fill(body);
 		g.drawImage(image, 4, 4, 4, 4, null);
 	}
 	
 	public void buildBody()
 	{
-		body = new Rectangle2D.Double(getX(), getY(), getWidth(), getHeight());
+		body = new Rectangle2D.Double(Display.getState().getBackground().getX() + getX(), Display.getState().getBackground().getY() + getY(), getWidth(), getHeight());
 	}
 
 	public int getWidth()					{return this.WIDTH;}

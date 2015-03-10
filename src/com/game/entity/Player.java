@@ -62,7 +62,7 @@ public class Player extends Entity
 	{	
 		//g.rotate(getAngle(), getX() + (getWidth() / 2), getY() + (getHeight() / 2));
 		
-		g.setColor(new Color(13,71,161));
+		g.setColor(new Color(207,216,220));
 		g.fill(body);
 		
 		//g.rotate(-getAngle(), getX() + (getWidth() / 2), getY() + (getHeight() / 2));

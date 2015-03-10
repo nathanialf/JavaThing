@@ -5,6 +5,7 @@ import com.game.state.*;
 
 import java.awt.Canvas;
 import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferStrategy;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -187,6 +188,7 @@ public class Display extends Canvas implements Runnable
 
 	public static void main(String[] args) 
 	{
+		long start = System.currentTimeMillis();
 		// sets everything. straight forward
 		frame.add(display);
 		frame.setResizable(false);
@@ -198,10 +200,13 @@ public class Display extends Canvas implements Runnable
 
 		display.start();
 		
-		current_state = PLAY_STATE;
+		current_state = getPlayState();
 		
 		frame.setFocusable(true);
 		frame.requestFocus();
+		
+		long end = System.currentTimeMillis();
+		System.out.println("Time to load: " + (end - start) + " Milliseconds");
 	}
 	
 	//ACCESSORS AND MUTATORS
@@ -214,5 +219,16 @@ public class Display extends Canvas implements Runnable
 	public int getWidth()						{return WIDTH;}
 	public int getHeight()						{return HEIGHT;}
 	
-	public static void setState(State s)		{current_state = s;}
+	public static void setState(State s)		
+	{
+		State old = current_state;
+		
+		current_state = s;
+		current_state.openAnim();
+		
+		Rectangle2D.Double newBody = new Rectangle2D.Double(0, -HEIGHT, WIDTH, HEIGHT);
+		
+		old.setBackground(newBody);
+		
+	}
 }
