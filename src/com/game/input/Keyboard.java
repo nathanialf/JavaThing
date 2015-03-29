@@ -18,9 +18,9 @@ public class Keyboard implements KeyListener
 	 * 4 - PAUSE
 	 */
 	
-	private int 	control [] = 				{0,		0,		0,		0,		0};
-	private String 	control_description [] =	{"Up", 	"Down",	"Left",	"Right","Pause"};
-	private boolean player_move [] = 			{false,	false, 	false, 	false, 	false};
+	private int 	control [] = 				{0,		0,		0,		0,		0,		0};
+	private String 	control_description [] =	{"Up", 	"Down",	"Left",	"Right","Pause","Console"};
+	private boolean player_move [] = 			{false,	false, 	false, 	false, 	false, 	false};
 	
 	public Keyboard()
 	{
@@ -51,6 +51,10 @@ public class Keyboard implements KeyListener
 						{
 							control[a] = '\n';
 						}
+						else if(values[1].equals("enter"))
+						{
+							control[a] = '\t';
+						}
 						else
 						{
 							control[a] = values[1].charAt(0);
@@ -71,7 +75,14 @@ public class Keyboard implements KeyListener
 	@SuppressWarnings("static-access")
 	public void keyPressed(KeyEvent e) 
 	{
+		
 		if(e.getKeyCode() == e.VK_ESCAPE)System.exit(0);
+		
+		if(e.getKeyChar() == control[5]  && !Display.getState().is_open_animating)
+		{
+			//OPENS THE CONSOLE
+			System.out.println("This will open the console for debugging");
+		}
 		
 		//Toggles play and pause state
 		if(e.getKeyChar() == control[4] && !Display.getState().is_open_animating)

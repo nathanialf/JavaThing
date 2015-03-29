@@ -21,16 +21,16 @@ public class PlayState extends State
 	{
 		setName("PLAY");
 		background.setRect(0, 0, Display.WIDTH, Display.HEIGHT); 
+		BASE_HEIGHT = Display.HEIGHT;
 	}
 	
 	public void update(double delta)
 	{
 		if(is_open_animating)
 		{
-			
 			if(background.getY() < 0)
 			{
-				background.setRect(background.getX(), background.getY() + (background.getHeight() / 15), background.getWidth(), background.getHeight());
+				background.setRect(background.getX(), background.getY() + (background.getHeight() / 30), background.getWidth(), background.getHeight());
 				getWorld().buildBody();
 				getPlayer().buildBody();
 			}
@@ -50,7 +50,7 @@ public class PlayState extends State
 	public void render(Graphics2D g)
 	{
 		//is a rectangle with boundaries I use for collisions. Google Rectangle2D 
-		g.setColor(new Color(227,242,253));
+		g.setColor(new Color(20,20,20));
 		g.fill(background);
 		
 		//Draws world
@@ -58,11 +58,6 @@ public class PlayState extends State
 		
 		//Draws Player
 		getPlayer().render(g);
-	}
-	
-	public void openAnim()
-	{
-		is_open_animating = true;
 	}
 	
 	public static Player getPlayer()			{return player;}

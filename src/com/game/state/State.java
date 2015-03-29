@@ -11,6 +11,8 @@ public class State
 
 	public boolean is_open_animating = false;
 	
+	public int BASE_HEIGHT;
+	
 	public State()
 	{
 		

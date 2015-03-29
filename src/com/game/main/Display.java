@@ -4,11 +4,15 @@ import com.game.input.*;
 import com.game.state.*;
 
 import java.awt.Canvas;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferStrategy;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
@@ -43,6 +47,7 @@ public class Display extends Canvas implements Runnable
 	private static PlayState PLAY_STATE = new PlayState();
 	private static PauseState PAUSE_STATE = new PauseState();
 	
+	public static Font MAIN_FONT;
 
 	public Display()
 	{	
@@ -177,6 +182,8 @@ public class Display extends Canvas implements Runnable
 		Graphics2D g = (Graphics2D) bs.getDrawGraphics();
 		// draw
 		
+		g.setFont(MAIN_FONT);
+		
 		//RENDER THINGS IN THE CURRENT STATE
 		current_state.render(g);
 		 
@@ -186,7 +193,7 @@ public class Display extends Canvas implements Runnable
 
 	}
 
-	public static void main(String[] args) 
+	public static void main(String[] args) throws FileNotFoundException, FontFormatException, IOException 
 	{
 		long start = System.currentTimeMillis();
 		// sets everything. straight forward
@@ -204,6 +211,9 @@ public class Display extends Canvas implements Runnable
 		
 		frame.setFocusable(true);
 		frame.requestFocus();
+		
+		MAIN_FONT = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream("res/fonts/Roboto-Regular.ttf"));
+		MAIN_FONT = MAIN_FONT.deriveFont((HEIGHT/60F));
 		
 		long end = System.currentTimeMillis();
 		System.out.println("Time to load: " + (end - start) + " Milliseconds");
@@ -226,7 +236,7 @@ public class Display extends Canvas implements Runnable
 		current_state = s;
 		current_state.openAnim();
 		
-		Rectangle2D.Double newBody = new Rectangle2D.Double(0, -HEIGHT, WIDTH, HEIGHT);
+		Rectangle2D.Double newBody = new Rectangle2D.Double(0, -current_state.BASE_HEIGHT, WIDTH, current_state.BASE_HEIGHT);
 		
 		old.setBackground(newBody);
 		

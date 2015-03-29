@@ -100,7 +100,7 @@ public class World
 	
 	public void render(Graphics2D g)
 	{
-		g.setColor(new Color(144,164,174));
+		g.setColor(new Color(182, 182, 182));
 		g.fill(body);
 		g.drawImage(image, 4, 4, 4, 4, null);
 	}
