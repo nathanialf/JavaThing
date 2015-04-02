@@ -2,11 +2,11 @@ package com.game.menu;
 
 import com.game.main.*;
 
-public class ExitButton extends MenuComponent
+public class SettingsButton extends MenuComponent
 {
-	public ExitButton(int x, int y)
+	public SettingsButton(int x, int y)
 	{
-		setText("EXIT");
+		setText("SETTINGS");
 		setX(x);
 		setY(y);
 		setWidth(Display.WIDTH / 4);
@@ -16,6 +16,7 @@ public class ExitButton extends MenuComponent
 	
 	public void doAction()
 	{
-		System.exit(0);
+		//DISPLAYS MAP
+		//Display.setState(Display.getMapState());
 	}
 }

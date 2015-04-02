@@ -14,12 +14,9 @@ public class MapButton extends MenuComponent
 		buildBody();
 	}
 	
-	public void update(double delta)
+	public void doAction()
 	{
-		if(Display.getMouse().getLeftClicked() && body.contains(Display.getMouse().getX(), Display.getMouse().getY()))
-		{
-			//DISPLAYS MAP
-			//Display.setState(Display.getMapState());
-		}
+		//DISPLAYS MAP
+		//Display.setState(Display.getMapState());
 	}
 }

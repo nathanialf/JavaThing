@@ -3,21 +3,32 @@ package com.game.world;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import javax.swing.JComponent;
+
 import com.game.main.Display;
 
-public class World 
+public class World extends JComponent
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
+	
 	private int WIDTH, HEIGHT;
 	private int x, y;
 	
 	private File mapFile;
 	
-	Image image;
+	String image_location;
 	
 	protected Rectangle2D body;
 	
@@ -57,7 +68,7 @@ public class World
 					setHeight((int)(Display.WIDTH / Integer.parseInt(values[1])));
 					break;
 				case "Image":
-					//System.out.println("IMAGE: " + values[1]);
+					image_location = "res/maps/images/" + values[1];
 					break;
 				default:
 					break;
@@ -102,7 +113,10 @@ public class World
 	{
 		g.setColor(new Color(182, 182, 182));
 		g.fill(body);
-		g.drawImage(image, 4, 4, 4, 4, null);
+		
+		Image img1 = Toolkit.getDefaultToolkit().getImage(image_location);
+	    g.drawImage(img1, getX(), (int)body.getY(), getWidth(), getHeight(), this);
+	    g.finalize();
 	}
 	
 	public void buildBody()

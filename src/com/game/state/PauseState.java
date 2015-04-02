@@ -1,7 +1,6 @@
 package com.game.state;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
@@ -13,7 +12,8 @@ public class PauseState extends State
     int base_y = Display.HEIGHT / 6;
     MenuComponent components [] = {new ResumeButton(0, base_y), 
     		new MapButton(0, base_y + (Display.HEIGHT / 16) + 16), 
-    		new ExitButton(0, base_y + (((Display.HEIGHT / 16) + 16) * 2))};
+    		new SettingsButton(0, base_y + (((Display.HEIGHT / 16) + 16) * 2)),
+    		new ExitButton(0, base_y + (((Display.HEIGHT / 16) + 16) * 3))};
     
 	public PauseState()
 	{

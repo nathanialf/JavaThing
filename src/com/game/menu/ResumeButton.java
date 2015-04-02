@@ -14,11 +14,8 @@ public class ResumeButton extends MenuComponent
 		buildBody();
 	}
 	
-	public void update(double delta)
+	public void doAction()
 	{
-		if(Display.getMouse().getLeftClicked() && body.contains(Display.getMouse().getX(), Display.getMouse().getY()))
-		{
-			Display.setState(Display.getPlayState());
-		}
+		Display.setState(Display.getPlayState());
 	}
 }
