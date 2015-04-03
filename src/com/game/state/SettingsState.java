@@ -8,15 +8,12 @@ import com.game.main.Display;
 import com.game.menu.*;
 import com.game.menu.buttons.*;
 
-public class PauseState extends State
+public class SettingsState extends State
 {
     int base_y = Display.HEIGHT / 6;
-    MenuButton components [] = {new ResumeButton(0, base_y), 
-    		new MapButton(0, base_y + (Display.HEIGHT / 16) + 16), 
-    		new SettingsButton(0, base_y + (((Display.HEIGHT / 16) + 16) * 2)),
-    		new ExitButton(0, base_y + (((Display.HEIGHT / 16) + 16) * 3))};
+    MenuButton components [] = {new BackButton(0, base_y)};
     
-	public PauseState()
+	public SettingsState()
 	{
 		setName("PAUSE");
 		background.setRect(0, -Display.HEIGHT, Display.WIDTH, Display.HEIGHT); 

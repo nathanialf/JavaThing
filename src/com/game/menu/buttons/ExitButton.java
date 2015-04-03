@@ -1,9 +1,15 @@
-package com.game.menu;
+package com.game.menu.buttons;
 
 import com.game.main.*;
+import com.game.menu.MenuButton;
 
-public class ExitButton extends MenuComponent
+public class ExitButton extends MenuButton
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public ExitButton(int x, int y)
 	{
 		setText("EXIT");

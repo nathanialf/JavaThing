@@ -15,7 +15,7 @@ public class PlayState extends State
 	private static Player player = new Player();
 	
 	//GAME WORLD
-	private static World world = new World(new File("res/maps/error.map"));
+	private static World world = new World(null);
 	
 	public PlayState()
 	{
@@ -41,7 +41,7 @@ public class PlayState extends State
 			}
 		}
 		
-		Display.getMouse().update();
+		//Display.getMouse().update();
 		
 		getWorld().update(delta);
 		getPlayer().update(delta);

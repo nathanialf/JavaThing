@@ -2,15 +2,13 @@ package com.game.menu;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.geom.Rectangle2D;
 
 import javax.swing.JComponent;
 
 import com.game.main.Display;
 
-public class MenuComponent extends JComponent
+public class MenuButton extends JComponent
 {
 	/**
 	 * 
@@ -29,13 +27,13 @@ public class MenuComponent extends JComponent
 	
 	public Color MAIN = new Color(100,175,100);
 	public Color HOVER = new Color(75, 131, 75);
-	public Color CLICK = new Color(78, 150, 78);
+	public Color CLICK = new Color(50, 87, 50);
 	Color c = MAIN;
 	
 	boolean is_color_animating = false;
 	Color newColor = Color.BLACK;
 	
-	public MenuComponent()
+	public MenuButton()
 	{
 	}
 	
@@ -45,7 +43,7 @@ public class MenuComponent extends JComponent
 		{
 			if(Display.getMouse().getLeftClicked())
 			{
-				//setColor(CLICK);
+				setColor(CLICK);
 				doAction();
 			}
 			else
@@ -73,7 +71,7 @@ public class MenuComponent extends JComponent
 		g.drawString(getText(), 40, (int) (body.getY() + (body.getHeight() / 2) + (Display.MAIN_FONT.getSize()/2)));
 		
 		g.setColor(new Color(255,255,255,50));
-		g.fillRect(getWidth() - 8, (int) body.getY(), 8, getHeight());
+		g.fillRect(getWidth() - (getWidth() / 40), (int) body.getY(), getWidth() / 40, getHeight());
 	}
 	
 	public void buildBody()

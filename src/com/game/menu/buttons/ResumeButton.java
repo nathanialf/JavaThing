@@ -1,9 +1,15 @@
-package com.game.menu;
+package com.game.menu.buttons;
 
 import com.game.main.*;
+import com.game.menu.MenuButton;
 
-public class ResumeButton extends MenuComponent
+public class ResumeButton extends MenuButton
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public ResumeButton(int x, int y)
 	{
 		setText("RESUME");

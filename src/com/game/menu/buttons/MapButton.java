@@ -1,9 +1,15 @@
-package com.game.menu;
+package com.game.menu.buttons;
 
 import com.game.main.*;
+import com.game.menu.MenuButton;
 
-public class MapButton extends MenuComponent
+public class MapButton extends MenuButton
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public MapButton(int x, int y)
 	{
 		setText("MAP");

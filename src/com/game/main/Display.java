@@ -46,6 +46,7 @@ public class Display extends Canvas implements Runnable
 	private static State current_state = new State();
 	private static PlayState PLAY_STATE = new PlayState();
 	private static PauseState PAUSE_STATE = new PauseState();
+	private static SettingsState SETTINGS_STATE = new SettingsState();
 	
 	public static Font MAIN_FONT;
 
@@ -220,14 +221,15 @@ public class Display extends Canvas implements Runnable
 	}
 	
 	//ACCESSORS AND MUTATORS
-	public static Keyboard getKeyboard() 		{return keyboard;}
-	public static Mouse getMouse()				{return mouse;}
-	public static MouseMotion getMouseMotion()	{return mouse_motion;}
-	public static State getState()				{return current_state;}
-	public static PlayState getPlayState()		{return PLAY_STATE;}
-	public static PauseState getPauseState()	{return PAUSE_STATE;}
-	public int getWidth()						{return WIDTH;}
-	public int getHeight()						{return HEIGHT;}
+	public static Keyboard getKeyboard() 			{return keyboard;}
+	public static Mouse getMouse()					{return mouse;}
+	public static MouseMotion getMouseMotion()		{return mouse_motion;}
+	public static State getState()					{return current_state;}
+	public static PlayState getPlayState()			{return PLAY_STATE;}
+	public static PauseState getPauseState()		{return PAUSE_STATE;}
+	public static SettingsState getSettingsState()	{return SETTINGS_STATE;}
+	public int getWidth()							{return WIDTH;}
+	public int getHeight()							{return HEIGHT;}
 	
 	public static void setState(State s)		
 	{
@@ -239,6 +241,5 @@ public class Display extends Canvas implements Runnable
 		Rectangle2D.Double newBody = new Rectangle2D.Double(0, -current_state.BASE_HEIGHT, WIDTH, current_state.BASE_HEIGHT);
 		
 		old.setBackground(newBody);
-		
 	}
 }
