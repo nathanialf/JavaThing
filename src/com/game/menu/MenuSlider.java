@@ -8,7 +8,7 @@ import javax.swing.JComponent;
 
 import com.game.main.Display;
 
-public class MenuButton extends JComponent
+public class MenuSlider extends JComponent
 {
 	/**
 	 * 
@@ -21,9 +21,14 @@ public class MenuButton extends JComponent
 	private int WIDTH;
 	private int HEIGHT;
 	
+	private double value;
+	private double MIN_VALUE;
+	private double MAX_VALUE;
+	
 	private String text;
 	
 	protected Rectangle2D body;
+	protected Rectangle2D slide = new Rectangle2D.Double(0,0,0,0);
 	
 	public Color MAIN = new Color(100,175,100);
 	public Color HOVER = new Color(75, 131, 75);
@@ -33,13 +38,9 @@ public class MenuButton extends JComponent
 	boolean is_color_animating = false;
 	Color newColor = Color.BLACK;
 	
-	//State sub_state = new State();
-
-
-	//public State s;
-	
-	public MenuButton()
+	public MenuSlider()
 	{
+		
 	}
 	
 	public void update(double delta)
@@ -48,8 +49,14 @@ public class MenuButton extends JComponent
 		{
 			if(Display.getMouse().getLeftClicked())
 			{
-				setColor(CLICK);
-				doAction();
+				//setColor(CLICK);
+
+				if(slide.contains(Display.getMouseMotion().getX(), Display.getMouseMotion().getY()))
+				{
+					setValue((int)((Display.getMouseMotion().getX() - slide.getX()) / slide.getWidth() * 100));
+					
+					doAction();
+				}
 			}
 			else
 			{
@@ -65,25 +72,23 @@ public class MenuButton extends JComponent
 		{
 			animateColor(newColor);
 		}
-		/*
-		if(getSubState() != null)
-			getSubState().update(delta);*/
+		
+		buildSlider();
 	}
 	
 	public void render(Graphics2D g)
 	{
-		g.setFont(Display.MEDIUM_FONT);
+		g.setFont(Display.SMALL_FONT);
 		g.setColor(c);
 		g.fill(body);
 		
 		g.setColor(Color.white);
-		g.drawString(getText(), (int)(getX() + (getWidth() * .05)), (int) (body.getY() + (body.getHeight() / 2) + (Display.MEDIUM_FONT.getSize()/2)));
+		g.drawString(getText() + ": " + (int)(((getValue() - getMinimumValue()) / getMaximumValue())* 100) + "%", (int) (getX() + (body.getHeight() / 3)), (int) (body.getY() + (body.getHeight() / 4) + (Display.SMALL_FONT.getSize()/2)));
 		
 		g.setColor(new Color(255,255,255,50));
 		g.fillRect(getX() + (getWidth() - (getWidth() / 40)), (int) body.getY(), getWidth() / 40, getHeight());
-/*
-		if(getSubState() != null)
-			getSubState().render(g);*/
+		g.fill(slide);
+		g.fillRect((int)(getX() + (getWidth() * .05)), (int) body.getY() + (getHeight() / 2), (int) (((getValue() - getMinimumValue()) / getMaximumValue()) * ((getWidth() * .9))), getHeight() / 5);
 	}
 	
 	public void buildBody()
@@ -91,17 +96,36 @@ public class MenuButton extends JComponent
 		body = new Rectangle2D.Double(Display.getState().getBackground().getX() + getX(), Display.getState().getBackground().getY() + getY(), getWidth(), getHeight());
 	}
 	
+	public void buildSlider()
+	{
+		/*
+		double sX = getX() + (getWidth() * .05);
+		double sY = body.getY() + (getHeight() / 2);
+		double sW = (getWidth() * .9);
+		double sH = getHeight() / 5;
+		
+		slide = new Rectangle2D.Double(sX, sY, sW, sH);
+		*/
+		slide =  new Rectangle2D.Double((int)(getX() + (getWidth() * .05)), (int) body.getY() + (getHeight() / 2), (int) (getWidth() * .9), getHeight() / 5);
+	}
+	
 	public void doAction()
 	{
 	}
 	
-	public int getX()				{return this.x;}
-	public int getY()				{return this.y;}
-	public int getWidth()			{return this.WIDTH;}
-	public int getHeight()			{return this.HEIGHT;}
-	public String getText()			{return this.text;}
+	public int getX()						{return this.x;}
+	public int getY()						{return this.y;}
+	public int getWidth()					{return this.WIDTH;}
+	public int getHeight()					{return this.HEIGHT;}
+	public double getValue()				{return this.value;}
+	public double getMinimumValue()			{return this.MIN_VALUE;}
+	public double getMaximumValue()			{return this.MAX_VALUE;}
+	public String getText()					{return this.text;}
 	//public State getSubState()			{return this.sub_state;}
 
+	public void setValue(double v)			{this.value = v;}
+	public void setMinimumValue(double v)	{this.MIN_VALUE = v;}
+	public void setMaximumValue(double v)	{this.MAX_VALUE = v;}
 	protected void setX(int x)		
 	{
 		this.x = x;

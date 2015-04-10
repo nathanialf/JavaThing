@@ -28,6 +28,8 @@ public class Display extends Canvas implements Runnable
 	//DIMENSIONS
 	public static int WIDTH;
 	public static int HEIGHT;
+	public static int volume;
+	public static boolean FULLSCREEN;
 
 	private Thread thread;
 	private boolean running = false;
@@ -47,14 +49,20 @@ public class Display extends Canvas implements Runnable
 	private static PlayState PLAY_STATE = new PlayState();
 	private static PauseState PAUSE_STATE = new PauseState();
 	private static SettingsState SETTINGS_STATE = new SettingsState();
-	
-	public static Font MAIN_FONT;
 
+	public static Font BIG_FONT;
+	public static Font MEDIUM_FONT;
+	public static Font SMALL_FONT;
+	
+	public static SaveWriter SAVE_WRITER = new SaveWriter();
+	
+	public static File config;
+	
 	public Display()
 	{	
 		//imports configurations for the game
 		//All pertinent information will live there
-		File config = new File("res/config.ini");
+		config = new File("res/config.ini");
 		
 		try 
 		{
@@ -67,7 +75,7 @@ public class Display extends Canvas implements Runnable
 				String values[] = line.split("-");
 				if(values[0].equals("Resolution"))
 				{
-					if(values[1].equals("Automatic"))
+					if(values[1].equals("automatic"))
 					{
 						
 					}
@@ -80,7 +88,11 @@ public class Display extends Canvas implements Runnable
 				}
 				if(values[0].equals("Fullscreen"))
 				{
-					System.out.println(values[1]);
+					FULLSCREEN = Boolean.parseBoolean(values[1]);
+				}
+				if(values[0].equals("Volume"))
+				{
+					volume = Integer.parseInt(values[1]);
 				}
 			}
 		} 
@@ -183,7 +195,7 @@ public class Display extends Canvas implements Runnable
 		Graphics2D g = (Graphics2D) bs.getDrawGraphics();
 		// draw
 		
-		g.setFont(MAIN_FONT);
+		g.setFont(MEDIUM_FONT);
 		
 		//RENDER THINGS IN THE CURRENT STATE
 		current_state.render(g);
@@ -213,8 +225,11 @@ public class Display extends Canvas implements Runnable
 		frame.setFocusable(true);
 		frame.requestFocus();
 		
-		MAIN_FONT = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream("res/fonts/Roboto-Regular.ttf"));
-		MAIN_FONT = MAIN_FONT.deriveFont((HEIGHT/60F));
+		MEDIUM_FONT = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream("res/fonts/Roboto-Regular.ttf"));
+		MEDIUM_FONT = MEDIUM_FONT.deriveFont((HEIGHT/60F));
+		SMALL_FONT = MEDIUM_FONT.deriveFont((HEIGHT/90F));
+		BIG_FONT = MEDIUM_FONT.deriveFont((HEIGHT/30F));
+		
 		
 		long end = System.currentTimeMillis();
 		System.out.println("Time to load: " + (end - start) + " Milliseconds");
@@ -224,10 +239,12 @@ public class Display extends Canvas implements Runnable
 	public static Keyboard getKeyboard() 			{return keyboard;}
 	public static Mouse getMouse()					{return mouse;}
 	public static MouseMotion getMouseMotion()		{return mouse_motion;}
+	
 	public static State getState()					{return current_state;}
 	public static PlayState getPlayState()			{return PLAY_STATE;}
 	public static PauseState getPauseState()		{return PAUSE_STATE;}
 	public static SettingsState getSettingsState()	{return SETTINGS_STATE;}
+	
 	public int getWidth()							{return WIDTH;}
 	public int getHeight()							{return HEIGHT;}
 	

@@ -16,9 +16,10 @@ public class Keyboard implements KeyListener
 	 * 2 - LEFT
 	 * 3 - RIGHT
 	 * 4 - PAUSE
+	 * 5 - CONSOLE
 	 */
 	
-	private int 	control [] = 				{0,		0,		0,		0,		0,		0};
+	public int 	control [] = 					{0,		0,		0,		0,		0,		0};
 	private String 	control_description [] =	{"Up", 	"Down",	"Left",	"Right","Pause","Console"};
 	private boolean player_move [] = 			{false,	false, 	false, 	false, 	false, 	false};
 	
@@ -76,7 +77,7 @@ public class Keyboard implements KeyListener
 	public void keyPressed(KeyEvent e) 
 	{
 		
-		if(e.getKeyCode() == e.VK_ESCAPE)System.exit(0);
+		//if(e.getKeyCode() == e.VK_ESCAPE)System.exit(0);
 		
 		if(e.getKeyChar() == control[5]  && !Display.getState().is_open_animating)
 		{

@@ -11,10 +11,11 @@ import com.game.menu.buttons.*;
 public class PauseState extends State
 {
     int base_y = Display.HEIGHT / 6;
-    MenuButton components [] = {new ResumeButton(0, base_y), 
+    public MenuButton buttons [] = {new ResumeButton(0, base_y), 
     		new MapButton(0, base_y + (Display.HEIGHT / 16) + 16), 
     		new SettingsButton(0, base_y + (((Display.HEIGHT / 16) + 16) * 2)),
-    		new ExitButton(0, base_y + (((Display.HEIGHT / 16) + 16) * 3))};
+    		new ControlsButton(0, base_y + (((Display.HEIGHT / 16) + 16) * 3)),
+    		new ExitButton(0, base_y + (((Display.HEIGHT / 16) + 16) * 4))};
     
 	public PauseState()
 	{
@@ -30,10 +31,10 @@ public class PauseState extends State
 		{	
 			if(background.getY() < 0)
 			{
-				background.setRect(background.getX(), background.getY() + (background.getHeight() / 30), background.getWidth(), background.getHeight());
+				background.setRect(background.getX(), background.getY() + (background.getHeight() / 15), background.getWidth(), background.getHeight());
 				
-				for(int a = 0; a < components.length; a++)
-					components[a].buildBody();
+				for(int a = 0; a < buttons.length; a++)
+					buttons[a].buildBody();
 			}
 			else
 			{
@@ -42,10 +43,18 @@ public class PauseState extends State
 			}
 		}
 		
-		for(int a = 0; a < components.length; a++)
+		for(int a = 0; a < buttons.length; a++)
 		{
-			components[a].update(delta);
+			buttons[a].update(delta);
 		}
+		
+		if(Display.getState() != this)
+		{
+			setSubState(new State());
+		}
+		
+		if(getSubState() != null)
+			getSubState().update(delta);
 	}
 	
 	public void render(Graphics2D g)
@@ -53,25 +62,28 @@ public class PauseState extends State
 		g.setColor(new Color(239,239,239));
 		g.fill(background);
 		
-		for(int a = 0; a < components.length; a++)
-			components[a].render(g);
+		for(int a = 0; a < buttons.length; a++)
+			buttons[a].render(g);
+
+		if(getSubState() != null)
+			getSubState().render(g);
 	}
 	
 	public void setBackground(Rectangle2D.Double r)	
 	{
 		background = r;
 		
-		for(int a = 0; a < components.length; a++)
-			components[a].buildBody();
+		for(int a = 0; a < buttons.length; a++)
+			buttons[a].buildBody();
 	}
 
 	public void openAnim()
 	{
 		is_open_animating = true;
 		
-		for(int a = 0; a < components.length; a++)
+		for(int a = 0; a < buttons.length; a++)
 		{
-			components[a].buildBody();
+			buttons[a].buildBody();
 		}
 	}
 }

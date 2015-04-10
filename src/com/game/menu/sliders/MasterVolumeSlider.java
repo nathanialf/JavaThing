@@ -1,27 +1,33 @@
-package com.game.menu.buttons;
+package com.game.menu.sliders;
 
 import java.awt.geom.Rectangle2D;
+import java.io.IOException;
 
 import com.game.main.*;
 import com.game.menu.*;
-import com.game.state.*;
 
-public class BackButton extends MenuButton
+public class MasterVolumeSlider extends MenuSlider
 {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public BackButton(int x, int y)
+	public MasterVolumeSlider(int x, int y)
 	{
-		setText("BACK");
+		setText("MASTER VOLUME");
 		setX(x);
 		setY(y);
 		setWidth(Display.WIDTH / 4);
 		setHeight(Display.HEIGHT / 16);
+		
 		buildBody();
+		
+		setMinimumValue(0);
+		setValue(Display.volume);
+		setMaximumValue(100);
 	}
+
 	
 	public void buildBody()
 	{
@@ -31,6 +37,6 @@ public class BackButton extends MenuButton
 	
 	public void doAction()
 	{
-		Display.getState().setSubState(new State());
+		Display.volume = (int) getValue();
 	}
 }

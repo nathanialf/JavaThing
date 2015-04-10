@@ -15,6 +15,7 @@ public class PlayState extends State
 	private static Player player = new Player();
 	
 	//GAME WORLD
+	//private static World world = new World(new File("res/maps/error.map"));
 	private static World world = new World(null);
 	
 	public PlayState()
@@ -30,7 +31,7 @@ public class PlayState extends State
 		{
 			if(background.getY() < 0)
 			{
-				background.setRect(background.getX(), background.getY() + (background.getHeight() / 30), background.getWidth(), background.getHeight());
+				background.setRect(background.getX(), background.getY() + (background.getHeight() / 15), background.getWidth(), background.getHeight());
 				getWorld().buildBody();
 				getPlayer().buildBody();
 			}

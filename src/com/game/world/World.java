@@ -67,7 +67,7 @@ public class World extends JComponent
 					setHeight((int)(Display.WIDTH / Integer.parseInt(values[1])));
 					break;
 				case "Image":
-					image_location = "res/maps/images/" + values[1];
+					image_location = values[1];
 					break;
 				default:
 					break;
@@ -110,8 +110,8 @@ public class World extends JComponent
 	
 	public void render(Graphics2D g)
 	{
-		g.setColor(new Color(182, 182, 182));
-		g.fill(body);
+		//g.setColor(new Color(182, 182, 182));
+		//g.fill(body);
 		
 		Image img1 = Toolkit.getDefaultToolkit().getImage(image_location);
 	    g.drawImage(img1, getX(), (int)body.getY(), getWidth(), getHeight(), this);

@@ -1,5 +1,7 @@
 package com.game.menu.buttons;
 
+import java.io.IOException;
+
 import com.game.main.*;
 import com.game.menu.MenuButton;
 
@@ -22,6 +24,12 @@ public class ExitButton extends MenuButton
 	
 	public void doAction()
 	{
+		try {
+			Display.SAVE_WRITER.saveConfig();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		System.exit(0);
 	}
 }
