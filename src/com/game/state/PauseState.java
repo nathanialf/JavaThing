@@ -48,6 +48,8 @@ public class PauseState extends State
 			buttons[a].update(delta);
 		}
 		
+		Display.getPlayState().setSubState(new State());
+		
 		if(Display.getState() != this)
 		{
 			setSubState(new State());

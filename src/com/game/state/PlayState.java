@@ -42,10 +42,19 @@ public class PlayState extends State
 			}
 		}
 		
+		Display.getPauseState().setSubState(new State());
 		//Display.getMouse().update();
 		
 		getWorld().update(delta);
 		getPlayer().update(delta);
+		
+		if(Display.getState() != this)
+		{
+			setSubState(new State());
+		}
+		
+		if(getSubState() != null)
+			getSubState().update(delta);
 	}
 	
 	public void render(Graphics2D g)
@@ -59,6 +68,9 @@ public class PlayState extends State
 		
 		//Draws Player
 		getPlayer().render(g);
+
+		if(getSubState() != null)
+			getSubState().render(g);
 	}
 	
 	public static Player getPlayer()			{return player;}
@@ -66,6 +78,7 @@ public class PlayState extends State
 	
 	public static void setPlayer(Player p)		{player = p;}
 	public static void setWorld(World w)		{world = w;}
+	
 	public void setBackground(Rectangle2D.Double r)	
 	{
 		background = r;

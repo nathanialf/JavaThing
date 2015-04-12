@@ -13,7 +13,7 @@ import com.game.menu.sliders.*;
 public class MapState extends State
 {
     int base_y = Display.HEIGHT / 6;
-    MenuButton buttons [] = {};
+    MenuButton buttons [] = {new BackButton(Display.WIDTH / 3, base_y)};
     MenuSlider sliders [] = {};
     MenuCheckbox checkboxes [] =  {};
     

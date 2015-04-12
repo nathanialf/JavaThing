@@ -26,7 +26,7 @@ public class BackButton extends MenuButton
 	public void buildBody()
 	{
 		if(Display.getState() == Display.getPauseState())
-			body = new Rectangle2D.Double(Display.getSettingsState().getBackground().getX(), Display.getSettingsState().getBackground().getY() + getY(), getWidth(), getHeight());
+			body = new Rectangle2D.Double(Display.getState().getSubState().getBackground().getX(), Display.getState().getSubState().getBackground().getY() + getY(), getWidth(), getHeight());
 	}
 	
 	public void doAction()

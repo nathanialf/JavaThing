@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import com.game.state.*;
 import com.game.main.Display;
 
 public class Keyboard implements KeyListener
@@ -19,6 +20,10 @@ public class Keyboard implements KeyListener
 	 * 5 - CONSOLE
 	 */
 	
+	/*
+	 * F1 - 112
+	 * F2 - 113
+	 */
 	public int 	control [] = 					{0,		0,		0,		0,		0,		0};
 	private String 	control_description [] =	{"Up", 	"Down",	"Left",	"Right","Pause","Console"};
 	private boolean player_move [] = 			{false,	false, 	false, 	false, 	false, 	false};
@@ -78,6 +83,13 @@ public class Keyboard implements KeyListener
 	{
 		
 		//if(e.getKeyCode() == e.VK_ESCAPE)System.exit(0);
+		if(e.getKeyCode() == e.VK_F2)
+		{
+			if(Display.getState().getSubState() != Display.getInformationState())
+				Display.getState().setSubState(Display.getInformationState());
+			else
+				Display.getState().setSubState(new State());
+		}
 		
 		if(e.getKeyChar() == control[5]  && !Display.getState().is_open_animating)
 		{

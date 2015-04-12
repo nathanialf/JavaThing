@@ -37,6 +37,9 @@ public class Display extends Canvas implements Runnable
 	private static Display display = new Display();
 	private static JFrame frame = new JFrame();
 	
+	public static int FPS;
+	public static int UPS;
+	
 	//INPUT
 	private static Keyboard keyboard;
 	private static Mouse mouse;
@@ -51,6 +54,7 @@ public class Display extends Canvas implements Runnable
 	private static SettingsState SETTINGS_STATE = new SettingsState();
 	private static ControlsState CONTROLS_STATE = new ControlsState();
 	private static MapState MAP_STATE = new MapState();
+	private static InformationState INFORMATION_STATE = new InformationState();
 
 	public static Font BIG_FONT;
 	public static Font MEDIUM_FONT;
@@ -168,7 +172,10 @@ public class Display extends Canvas implements Runnable
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
 				// displays updates and frames per second in the window title
-				frame.setTitle(updates + " UPS, " + frames + "FPS");
+				//frame.setTitle(updates + " UPS, " + frames + "FPS");
+				
+				FPS = frames;
+				UPS = updates;
 				
 				frames = 0;
 				updates = 0;
@@ -238,19 +245,20 @@ public class Display extends Canvas implements Runnable
 	}
 	
 	//ACCESSORS AND MUTATORS
-	public static Keyboard getKeyboard() 			{return keyboard;}
-	public static Mouse getMouse()					{return mouse;}
-	public static MouseMotion getMouseMotion()		{return mouse_motion;}
+	public static Keyboard getKeyboard() 					{return keyboard;}
+	public static Mouse getMouse()							{return mouse;}
+	public static MouseMotion getMouseMotion()				{return mouse_motion;}
 	
-	public static State getState()					{return current_state;}
-	public static PlayState getPlayState()			{return PLAY_STATE;}
-	public static PauseState getPauseState()		{return PAUSE_STATE;}
-	public static SettingsState getSettingsState()	{return SETTINGS_STATE;}
-	public static ControlsState getControlsState()	{return CONTROLS_STATE;}
-	public static MapState getMapState()			{return MAP_STATE;}
+	public static State getState()							{return current_state;}
+	public static PlayState getPlayState()					{return PLAY_STATE;}
+	public static PauseState getPauseState()				{return PAUSE_STATE;}
+	public static SettingsState getSettingsState()			{return SETTINGS_STATE;}
+	public static ControlsState getControlsState()			{return CONTROLS_STATE;}
+	public static MapState getMapState()					{return MAP_STATE;}
+	public static InformationState getInformationState()	{return INFORMATION_STATE;}
 	
-	public int getWidth()							{return WIDTH;}
-	public int getHeight()							{return HEIGHT;}
+	public int getWidth()									{return WIDTH;}
+	public int getHeight()									{return HEIGHT;}
 	
 	public static void setState(State s)		
 	{
