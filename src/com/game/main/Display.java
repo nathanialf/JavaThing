@@ -49,6 +49,8 @@ public class Display extends Canvas implements Runnable
 	private static PlayState PLAY_STATE = new PlayState();
 	private static PauseState PAUSE_STATE = new PauseState();
 	private static SettingsState SETTINGS_STATE = new SettingsState();
+	private static ControlsState CONTROLS_STATE = new ControlsState();
+	private static MapState MAP_STATE = new MapState();
 
 	public static Font BIG_FONT;
 	public static Font MEDIUM_FONT;
@@ -244,6 +246,8 @@ public class Display extends Canvas implements Runnable
 	public static PlayState getPlayState()			{return PLAY_STATE;}
 	public static PauseState getPauseState()		{return PAUSE_STATE;}
 	public static SettingsState getSettingsState()	{return SETTINGS_STATE;}
+	public static ControlsState getControlsState()	{return CONTROLS_STATE;}
+	public static MapState getMapState()			{return MAP_STATE;}
 	
 	public int getWidth()							{return WIDTH;}
 	public int getHeight()							{return HEIGHT;}

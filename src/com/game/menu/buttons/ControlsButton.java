@@ -1,5 +1,7 @@
 package com.game.menu.buttons;
 
+import java.awt.geom.Rectangle2D;
+
 import com.game.main.Display;
 import com.game.menu.*;
 
@@ -23,6 +25,13 @@ public class ControlsButton extends MenuButton
 	
 	public void doAction()
 	{
-		//Display.getState().setSubState(new State());
+		if(Display.getState().getSubState() != Display.getControlsState())
+		{	
+			Rectangle2D.Double newBody = new Rectangle2D.Double(Display.WIDTH / 3, -Display.getState().BASE_HEIGHT, Display.WIDTH * .66, Display.getState().BASE_HEIGHT);
+
+			if(Display.getState().getSubState() !=  null)
+				Display.getState().getSubState().setBackground(newBody);
+			Display.getState().setSubState(Display.getControlsState());
+		}
 	}
 }

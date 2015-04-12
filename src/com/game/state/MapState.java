@@ -10,15 +10,16 @@ import com.game.menu.buttons.*;
 import com.game.menu.checkboxes.*;
 import com.game.menu.sliders.*;
 
-public class SettingsState extends State
+public class MapState extends State
 {
     int base_y = Display.HEIGHT / 6;
-    MenuButton buttons [] = {new BackButton(Display.WIDTH / 3, base_y)};
-    MenuSlider sliders [] = {new MasterVolumeSlider(Display.WIDTH / 3, base_y + (Display.HEIGHT / 16) + 16)};
-    MenuCheckbox checkboxes [] =  {new FullscreenCheckbox(0, base_y + (((Display.HEIGHT / 16) + 16) * 3))};
-	public SettingsState()
+    MenuButton buttons [] = {};
+    MenuSlider sliders [] = {};
+    MenuCheckbox checkboxes [] =  {};
+    
+	public MapState()
 	{
-		setName("SETTINGS");
+		setName("MAP");
 		background.setRect(Display.WIDTH / 3, -Display.HEIGHT, Display.WIDTH, Display.HEIGHT); 
 		BASE_HEIGHT = Display.HEIGHT;
 	}
@@ -61,7 +62,7 @@ public class SettingsState extends State
 		g.setColor(new Color(239,239,239));
 		g.fill(background);
 		g.setColor(new Color(75, 131, 75));
-		g.drawString("SETTINGS", (int) background.getX(), (int) (background.getY() + background.getHeight() / 8));
+		g.drawString("MAP", (int) background.getX(), (int) (background.getY() + background.getHeight() / 8));
 
 		for(int a = 0; a < buttons.length; a++)
 			buttons[a].render(g);
